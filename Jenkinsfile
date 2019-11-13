@@ -7,7 +7,7 @@ pipeline {
             kind: Pod
             spec:
               containers:
-                - name: apline
+                - name: alpine
                   image: node:6-alpine
                   command:
                   - cat
@@ -21,14 +21,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                container(name: 'apline') {
+                container(name: 'alpine') {
                     sh 'npm install'
                 }
             }
         }
         stage('Test') {
             steps {
-                container(name: 'apline') {
+                container(name: 'alpine') {
                     sh './jenkins/scripts/test.sh'
                 }
             }
