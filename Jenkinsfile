@@ -1,21 +1,18 @@
 pipeline {
     agent {
-        docker {
-            kubernetes {
-             label 'regular-pod'
-                yaml '''
-                apiVersion: v1
-                kind: Pod
-                spec:
-                  containers:
-                    - name: node-alpine
-                      image: node:6-alpine
-                      command:
-                      - cat
-                      tty: true
-                      EXPOSE 3000/tcp
-                      EXPOSE 5000/tcp
-                '''
+        kubernetes {
+        label 'regular-pod'
+        yaml '''
+            apiVersion: v1
+            kind: Pod
+            spec:
+              containers:
+                - name: apline
+                  image: node:6-alpine
+                  command:
+                  - cat
+                  tty: true
+            '''
         }
     }
     environment {
@@ -24,11 +21,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                container(name: 'regular-pod')
                 sh 'npm install'
             }
         }
         stage('Test') {
             steps {
+                container(name: 'regular-pod')
                 sh './jenkins/scripts/test.sh'
             }
         }
