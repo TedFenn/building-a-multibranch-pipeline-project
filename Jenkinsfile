@@ -1,8 +1,21 @@
 pipeline {
     agent {
         docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000 -p 5000:5000'
+            kubernetes {
+             label 'regular-pod'
+                yaml '''
+                apiVersion: v1
+                kind: Pod
+                spec:
+                  containers:
+                    - name: node-alpine
+                      image: node:6-alpine
+                      command:
+                      - cat
+                      tty: true
+                      EXPOSE 3000/tcp
+                      EXPOSE 5000/tcp
+                '''
         }
     }
     environment {
