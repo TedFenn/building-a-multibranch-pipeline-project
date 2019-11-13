@@ -2,17 +2,7 @@ pipeline {
     agent {
         kubernetes {
         label 'regular-pod'
-        yaml '''
-            apiVersion: v1
-            kind: Pod
-            spec:
-              containers:
-                - name: alpine
-                  image: node:6-alpine
-                  command:
-                  - cat
-                  tty: true
-            '''
+        yamlFile test.yaml
         }
     }
     environment {
