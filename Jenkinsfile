@@ -2,7 +2,7 @@ pipeline {
     agent {
         kubernetes {
         label 'regular-pod'
-        yamlFile test.yaml
+        yamlFile 'test.yaml'
         }
     }
     environment {
