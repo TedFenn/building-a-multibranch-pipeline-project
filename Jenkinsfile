@@ -21,14 +21,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                container(name: 'regular-pod')
-                sh 'npm install'
+                container(name: 'regular-pod') {
+                    sh 'npm install'
+                }
             }
         }
         stage('Test') {
             steps {
-                container(name: 'regular-pod')
-                sh './jenkins/scripts/test.sh'
+                container(name: 'regular-pod') {
+                    sh './jenkins/scripts/test.sh'
+                }
             }
         }
     }
