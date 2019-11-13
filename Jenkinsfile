@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                container(name: 'apline) {
+                container(name: 'apline') {
                     sh './jenkins/scripts/test.sh'
                 }
             }
