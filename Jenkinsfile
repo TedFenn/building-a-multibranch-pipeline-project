@@ -21,14 +21,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                container(name: 'regular-pod') {
+                container(name: 'apline') {
                     sh 'npm install'
                 }
             }
         }
         stage('Test') {
             steps {
-                container(name: 'regular-pod') {
+                container(name: 'apline) {
                     sh './jenkins/scripts/test.sh'
                 }
             }
