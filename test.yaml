@@ -1,12 +1,10 @@
 --- 
-apiVersion: v1
+ apiVersion: v1
 kind: Pod
-command: 
-  - cat
-metadata:
-  name: alpine
-containers: 
-  - name: alpine
-    image: "node:6-alpine"
-spec: ~
-tty: true
+spec:
+  containers:
+    - name: alpine
+      image: node:6-alpine
+      command:
+      - cat
+      tty: true
